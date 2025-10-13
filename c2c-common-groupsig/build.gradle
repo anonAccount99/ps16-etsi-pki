@@ -1,0 +1,26 @@
+group = 'org.certificateservices.custom'
+version = '1.0-SNAPSHOT'
+
+apply plugin: "java-library"
+apply plugin: 'maven-publish'
+apply plugin: "groovy"
+apply plugin: 'idea'
+apply plugin: 'project-report'
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies{
+    implementation "org.bouncycastle:bcprov-debug-jdk15on:1.53"
+    implementation "net.time4j:time4j-core:2.0"
+    testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'org.apache.maven:maven-core:3.8.1'
+    implementation 'org.apache.maven:maven-plugin-api:3.0'
+    implementation 'com.ibm.jgroupsig:jgroupsig:1.1.0'
+    implementation('com.ibm.jgroupsig:libjgroupsig:1.1.0')
+    runtimeOnly    'com.ibm.jgroupsig:libjnigroupsig:1.1.0'
+}

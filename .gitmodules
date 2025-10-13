@@ -1,0 +1,19 @@
+[submodule "c2c-common-groupsig"]
+	path = c2c-common-groupsig
+	url = https://gitlab.fbk.eu/etsi-pki/c2c-common-groupsig
+[submodule "ea-ca"]
+	path = ea-ca
+	url = https://gitlab.fbk.eu/etsi-pki/ea-ca
+	branch = groupsig
+[submodule "aa-ca"]
+	path = aa-ca
+	url = https://gitlab.fbk.eu/etsi-pki/aa-ca
+	branch = groupsig
+[submodule "root-ca"]
+	path = root-ca
+	url = https://gitlab.fbk.eu/etsi-pki/root-ca
+	branch = groupsig
+[submodule "its-station"]
+	path = its-station
+	url = git@gitlab.fbk.eu:etsi-pki/its-station
+	branch = groupsig

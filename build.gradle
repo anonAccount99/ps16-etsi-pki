@@ -1,0 +1,47 @@
+plugins {
+    id 'base'
+}
+
+allprojects {
+    group   = 'eu.fbk.aleph.its'
+    version = '1.1.0'
+
+    repositories { mavenLocal(); mavenCentral() }
+    ext.junitVersion = '5.11.0'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    configurations {
+        download {
+            canBeResolved = true
+            canBeConsumed = false
+            extendsFrom configurations.runtimeClasspath
+        }
+    }
+
+    tasks.register("downloadDependencies", Copy) {
+        group = "build"
+        description = "Downloads this module’s runtime jars"
+        from configurations.download
+        into layout.buildDirectory.dir("downloaded-deps")
+    }
+}
+
+tasks.register("war") {
+    group       = "build"
+    description = "Builds the WAR produced by the :root-ca module"
+    dependsOn ":root-ca:war", ":aa-ca:war", ":ea-ca:war"
+}
+
+if (tasks.findByName("prepareKotlinBuildScriptModel") == null) {
+    tasks.register("prepareKotlinBuildScriptModel") {}
+}
+
+/* helper added to every sub-project */
+subprojects {
+    if (tasks.findByName("prepareKotlinBuildScriptModel") == null) {
+        tasks.register("prepareKotlinBuildScriptModel") {}
+    }
+}

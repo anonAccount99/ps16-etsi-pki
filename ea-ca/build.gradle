@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group   = 'eu.fbk.aleph.its'
+version = '1.1.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.11.0'
+}
+
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    implementation project(':c2c-common-groupsig')
+    implementation "org.bouncycastle:bcprov-debug-jdk15on:1.53"
+    compileOnly 'jakarta.ejb:jakarta.ejb-api:4.0.0'
+    compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0'
+    compileOnly 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+    implementation 'org.jboss.logging:jboss-logging:3.5.0.Final'
+    implementation 'org.apache.maven:maven-core:3.8.1'
+    implementation 'org.apache.maven:maven-plugin-api:3.0'
+    implementation 'net.jodah:failsafe:2.4.4'
+    implementation 'com.ibm.jgroupsig:jgroupsig:1.1.0'
+    implementation('com.ibm.jgroupsig:libjgroupsig:1.1.0')
+    runtimeOnly    'com.ibm.jgroupsig:libjnigroupsig:1.1.0'
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}

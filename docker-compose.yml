@@ -1,0 +1,79 @@
+version: "3.8"
+
+services:
+  root-ca:
+    build:
+      context: ./
+      dockerfile: root-ca/Dockerfile
+    container_name: root-ca
+    networks:
+      - wildfly-network
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'until curl -sSf http://localhost:8080/root/; do sleep 2; done'"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  ea-ca:
+    build:
+      context: ./
+      dockerfile: ea-ca/Dockerfile
+    container_name: ea-ca
+    networks:
+      - wildfly-network
+    depends_on:
+      - root-ca
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'until curl -sSf http://localhost:8080/ea/; do sleep 2; done'"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  aa-ca:
+    build:
+      context: ./
+      dockerfile: aa-ca/Dockerfile
+    container_name: aa-ca
+    networks:
+      - wildfly-network
+    depends_on:
+      - ea-ca
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'until curl -sSf http://localhost:8080/aa/; do sleep 2; done'"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  its-station:
+    build:
+      context: ./
+      dockerfile: its-station/Dockerfile
+    container_name: its-station
+    networks:
+      - its-stations-net
+      - wildfly-network
+    depends_on:
+      - ea-ca
+      - aa-ca
+    volumes:
+      - ./benchmark-results:/app/results:Z
+#    healthcheck:
+#      test: ["CMD-SHELL", "sh -c 'until curl -sSf http://localhost:8080/aa/; do sleep 2; done'"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 20
+#      start_period: 30s
+
+networks:
+  wildfly-network:
+    driver: bridge
+
+  its-stations-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+          gateway: 172.20.0.1

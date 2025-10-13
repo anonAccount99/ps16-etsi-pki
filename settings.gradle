@@ -1,0 +1,6 @@
+rootProject.name = "pki-groupsig"
+include 'c2c-common-groupsig'
+include 'root-ca'
+include 'aa-ca'
+include 'ea-ca'
+include 'its-station'
