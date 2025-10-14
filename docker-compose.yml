@@ -42,7 +42,7 @@ services:
       - ea-ca
     healthcheck:
       test: ["CMD-SHELL", "sh -c 'until curl -sSf http://localhost:8080/aa/; do sleep 2; done'"]
-     interval: 10s
+      interval: 10s
       timeout: 5s
       retries: 20
       start_period: 30s
