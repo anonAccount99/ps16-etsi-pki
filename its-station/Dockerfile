@@ -48,7 +48,7 @@ COPY --from=builder /workspace/libgroupsig/src/wrappers/java/jgroupsig/java/targ
 COPY --from=builder /workspace/its-station/build/libs/its-station.jar /app/its-station.jar
 RUN ldconfig
 
-RUN mkdir -p /app/results && chmod 1777 /app/results
+RUN mkdir -p /app/results && chown -R 1001:0 /app && chmod -R g+rwX /app
 
 USER 1001
 WORKDIR /app
