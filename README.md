@@ -1,6 +1,24 @@
 # PS16-ETSI-PKI: Group Signatures for ETSI C-ITS
 
-**PS16-ETSI-PKI** is a Java-based implementation of a Public Key Infrastructure tailored for Cooperative Intelligent Transport Systems (C-ITS). The project leverages the open source *C2C-Common* project to implement standard ITS security message and certificate formats from ETSI and IEEE (e.g. **ETSI TS 103 097 v1.3.1**, **ETSI TS 102 941 v1.3.1**, and **IEEE 1609.2-2016/1609.2a-2017**). It includes a Root Certificate Authority, an Enrollment Authority, an Authorization Authority, and an ITS station, for now only used to benchmark DENM genration and verfication. This project also leverages IBM's *libgroupsig* -- a library implementing multiple group signature schemes. In particular, we modify C2C-Common to support the generation of DEN Messages signed with *PS16* signatures -- a schema implemented in *libgroupsig*. 
+**PS16-ETSI-PKI** is a Java-based implementation of a Public Key Infrastructure tailored for Cooperative Intelligent Transport Systems (C-ITS). The project leverages the open source *C2C-Common* project to implement standard ITS security message and certificate formats from ETSI and IEEE (e.g. **ETSI TS 103 097 v1.3.1**, **ETSI TS 102 941 v1.3.1**, and **IEEE 1609.2-2016/1609.2a-2017**). It includes a Root Certificate Authority, an Enrollment Authority, an Authorization Authority, and an ITS station, for now only used to benchmark DENM genration and verfication. This project also leverages IBM's *libgroupsig* -- a library implementing multiple group signature schemes. In particular, we modify C2C-Common to support the generation of DEN Messages signed with *PS16* signatures -- a schema implemented in *libgroupsig*.
+
+## Execution
+
+Prerequisites: Docker and Docker Compose v2.
+
+Run:
+
+```bash
+sudo ./setup.sh
+docker compose up --build
+```
+
+The first command prepares the local environment and permissions. The second command builds and starts all services. Benchmark results will appear at `./benchmark-results/benchmark-results.json`. To stop the stack, press `Ctrl+C`, then run:
+
+```bash
+docker compose down
+```
+
 
 ## Technology Stack
 
