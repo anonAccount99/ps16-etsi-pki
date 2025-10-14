@@ -1,20 +1,6 @@
-# PKI-GroupSig: Group Signature-Enabled PKI for C-ITS
+# PS16-ETSI-PKI: Group Signatures for ETSI C-ITS
 
-**PKI-GroupSig** is a Java-based implementation of a Public Key Infrastructure tailored for Cooperative Intelligent Transport Systems (C-ITS). It features a multi-tier certificate authority hierarchy with support for group signatures to provide privacy-preserving authentication for vehicle communications. The project implements standard ITS security message and certificate formats from ETSI and IEEE (e.g. **ETSI TS 103 097 v1.3.1**, **ETSI TS 102 941 v1.3.1**, and **IEEE 1609.2-2016/1609.2a-2017**). It includes components for a Root Certificate Authority, an Enrollment Authority, an Authorization Authority, and an example ITS station (on-board unit) to demonstrate certificate issuance and secure message exchange. By integrating the *libgroupsig* library, the system enables group signature operations for anonymous yet verifiable messages.
-
-## Features
-
-* **Standards-Compliant ITS PKI** – Supports the ETSI TS 103 097 security header and certificate formats and IEEE 1609.2 specifications for vehicular communication security, ensuring interoperability with C-ITS standards.
-* **Multi-Tier Certificate Authorities** – Implements a hierarchical PKI with distinct roles: a Root CA, an Enrollment CA (EA), and an Authorization CA (AA). Each CA runs as a separate service, issuing and managing different certificate types (the default service endpoints are `http://root-ca:8080/root`, `http://ea-ca:8080/ea`, and `http://aa-ca:8080/aa` for Root, EA, and AA respectively). This mirrors the trust structure defined in ETSI C-ITS security (with the Root CA as trust anchor, the EA issuing enrollment credentials, and the AA issuing authorization tickets/pseudonym certificates).
-* **Group Signature Support** – Integrates the **libgroupsig** C library (via JNI) to provide group signature capabilities. Messages (e.g. CAM/DENM in C-ITS) can be signed such that individual vehicles remain anonymous while a group manager (or authorities) can still verify and, if necessary, revoke anonymity. This enhances privacy for vehicle broadcasts.
-* **RESTful Certificate Services** – Exposes RESTful APIs (built with Jakarta EE JAX-RS) for certificate management. For example:
-
-    * *Enrollment Certificate API*: Allows an ITS station to request an enrollment certificate from the EA (e.g. `POST /ea/api/enrollment-certificate`). The station’s unique ID (e.g. a vehicle identifier) is used to obtain a long-term credential signed by the EA.
-    * *Authorization Ticket API*: Allows an enrolled station to request pseudonym certificates (authorization tickets) from the AA (e.g. `POST /aa/api/authorization-ticket`), presenting its enrollment cert as proof of legitimacy.
-    * *CA Certificate Retrieval*: Endpoints to retrieve the public certificates of the Root CA, EA, and AA (e.g. `GET /root/api/certificate`, etc.) so that stations and other entities can obtain trust anchors and intermediate CA certs.
-* **ITS Station Simulator** – Includes an **ITS Station** component (simulated on-board unit) that interacts with the PKI. On startup, the station automatically requests an enrollment certificate from the EA and uses it to obtain an authorization certificate from the AA (with retry logic to wait for services to be available). It can then generate and broadcast signed **DENM (Decentralized Environmental Notification Message)** messages. A provided `DenmReceiver` listens on a defined port to receive and verify incoming DENMs, demonstrating end-to-end operation.
-* **Configurable and Extensible** – Uses the flexibility of Java and WildFly application server to allow configuration of cryptographic algorithms and trust stores. It relies on BouncyCastle for cryptographic primitives and encoding (COER/ASN.1) of certificates. The system is modular, with a common library (`c2c-common-groupsig`) that can be reused or extended for other ITS applications.
-* **Containerized Deployment** – All components are Dockerized for easy setup. Each CA and the station come with a Dockerfile based on JBoss WildFly 26/36 (Java EE 8/Jakarta EE 10 on JDK 21). A **docker-compose** configuration is provided to orchestrate the services, ensuring they start in the correct order (Root CA → EA → AA → ITS station) and network together. This allows quick deployment of the entire PKI and test station stack in isolated containers.
+**PS16-ETSI-PKI** is a Java-based implementation of a Public Key Infrastructure tailored for Cooperative Intelligent Transport Systems (C-ITS). The project leverages the open source *C2C-Common* project to implement standard ITS security message and certificate formats from ETSI and IEEE (e.g. **ETSI TS 103 097 v1.3.1**, **ETSI TS 102 941 v1.3.1**, and **IEEE 1609.2-2016/1609.2a-2017**). It includes a Root Certificate Authority, an Enrollment Authority, an Authorization Authority, and an ITS station, for now only used to benchmark DENM genration and verfication. This project also leverages IBM's *libgroupsig* -- a library implementing multiple group signature schemes. In particular, we modify C2C-Common to support the generation of DEN Messages signed with *PS16* signatures -- a schema implemented in *libgroupsig*. 
 
 ## Technology Stack
 
@@ -86,40 +72,6 @@ Most configuration is handled internally or via environment variables in the Doc
 * **Persistent Storage:** By default, certificates and keys are kept in memory or local files inside the containers. The Root CA, EA, and AA likely generate a key pair (and self-signed or cross-signed certificates) at first startup. In the current setup, these are not persisted outside the container (so each fresh start resets the PKI). For a real deployment, you would attach volumes to persist the keystores or use an external database/HSMS.
 * **Environment Variables:** The Docker Compose file defines some env variables (like WildFly admin credentials). You can also pass in environment variables to tweak configurations; for example, if the code were designed to read a specific env var for overriding the default URLs or cryptographic settings (not explicitly implemented in this version, but could be extended).
 * **Logging:** Logging levels can be adjusted via standard Java logging config or WildFly configuration. By default, important actions (certificate issuance, requests, errors) are logged to console.
-
-## Project Structure
-
-The repository is organized into multiple modules, each in its own directory under the root:
-
-* **c2c-common-groupsig/** – Core library containing the implementations of data structures and crypto functions according to ETSI TS 103 097 / IEEE 1609.2. This includes certificate formats, message signing and verification, encoders/decoders, and utility classes. (It’s essentially an updated version of a C-ITS security library with group signature support added.)
-* **root-ca/** – The Root Certificate Authority service. This module produces a WAR that, when deployed, runs a service listening (by default) at context path `/root`. It holds the Root CA key pair and issues certificates to subordinate CAs. Key contents:
-
-    * *Services & API:* Contains a `RootCert` resource (for retrieving the root certificate) and a `SignCaCert` resource (used by subordinate CAs to get their CSR signed by the root). The `Setup` singleton bean in this module likely generates the Root CA key on first run (or loads a preset one) and registers it for use.
-    * *Dockerfile:* Builds the war and sets up the environment for this service.
-* **ea-ca/** – The Enrollment Authority module. WAR runs at context `/ea`. Responsible for issuing **Enrollment Certificates** to vehicles (ITS stations). Key contents:
-
-    * `EnrollmentCertificate` API (handles incoming requests for enrollment certs, probably expecting some identification or public key from the station and returning a signed certificate).
-    * `EaCertificate` resource (for retrieving the EA’s own certificate, which is signed by the Root CA). The EA on startup likely uses `SignCaCert` from Root CA to obtain its cert if not already present.
-    * Possibly an `EnrollmentVerification` API (used by AA to verify a given enrollment cert’s validity, if the workflow requires cross-checking with EA).
-    * *Setup logic:* On startup, if the EA doesn’t have a valid cert, it may generate a key pair and call Root CA’s API to get signed. It then stores its certificate (for serving to others).
-* **aa-ca/** – The Authorization Authority module. WAR at context `/aa`. Issues **Authorization Tickets** (short-term anonymous certificates) to stations:
-
-    * `AuthorizationTicket` API endpoint for stations to request pseudonym certificates. The station must provide its enrollment certificate (or a digest of it) as proof. The AA will typically verify that the enrollment cert was issued by a trusted EA (possibly by checking the signature using the EA’s cert or contacting the EA’s verification service). If valid, the AA issues one or more authorization certificates (which might be downloaded or pushed to the station).
-    * `AaCert` resource (for retrieving the AA’s own certificate, signed by the Root CA).
-    * *Setup:* Similar to EA, the AA module on startup ensures it has a certificate (signed by Root CA). It may either get signed directly by Root CA or through an intermediate (depending on PKI design, but from code it looks like Root CA signs both EA and AA). The AA’s Setup bean likely handles key generation and obtaining the cert.
-* **its-station/** – The ITS Station simulator module. This is an application that acts as a vehicle’s on-board unit (OBU):
-
-    * On startup, a `Setup` singleton bean triggers the enrollment and authorization process: it generates a vehicle key pair (if not existing), contacts the EA’s `/enrollment-certificate` API to get an enrollment cert, then uses that to call the AA’s `/authorization-ticket` API. The obtained certificates are stored (likely in memory or a simple file) via the `CertStore` from the common library.
-    * Contains `DenmTransmitter` and `DenmReceiver` components (possibly as EJBs or threads). The transmitter can periodically or on-demand create a DENM message, sign it with the vehicle’s current authorization certificate (group signature or regular ECDSA depending on config), and send it via UDP broadcast on port 30000. The receiver listens on that port for any incoming DENMs from other stations and verifies them (using the certificate chain and CRL info from CAs).
-    * REST endpoints: `Denm` resource (e.g., `POST /api/denm/trigger/{id}`) to allow external triggering of a DENM broadcast. This could be used to instruct the station to send a specific message (perhaps `{id}` could select different test scenarios). There is also a `Resource` class (possibly a base path ping or general endpoint). The station’s JAX-RS application is configured with base path `/api` (see `ObuConfig` class).
-    * *Dockerfile:* Similar pattern to CA services – builds the station WAR, sets up libgroupsig, etc., and deploys on WildFly. The station container joins two networks in Docker: one shared with the CAs (to reach their services by name) and one separate `its-stations-net` (which could simulate an ad-hoc network for broadcasting DENMs among station containers).
-* **docker-compose.yml** – Orchestration file to build and run all components together. Defines networks and service dependencies so that, for example, the EA waits for Root CA to be available before starting, etc.. This file is handy for quickly spinning up the entire demonstration PKI environment.
-
-Other notable files and folders:
-
-* **LICENSE.txt** – The license file for the project (AGPL-3.0).
-* **README.adoc / README.md** – Documentation files (in AsciiDoc and Markdown) found in the common library and each module. (Some sub-module README files were placeholders.) This combined README (you’re reading) is synthesized from those and the code.
-* **Gradle build scripts** – `build.gradle` in each module and a root `settings.gradle` that defines the multi-project structure. They configure dependencies like BouncyCastle and the libgroupsig wrapper JAR (`com.ibm.jgroupsig:1.1.0`).
 * **.gitmodules** – Indicates this project was structured with Git submodules for each component in its original repository form. Each submodule corresponds to one of the directories above (root-ca, ea-ca, etc.), which were likely individual repositories (e.g., on a GitLab instance) combined here.
 
 The codebase is logically separated by component, which makes it easier to understand each part of the system independently (e.g., one can focus on `aa-ca` to see how the AA works, etc.).
