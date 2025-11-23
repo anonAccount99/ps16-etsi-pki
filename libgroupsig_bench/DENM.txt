@@ -1,0 +1,45 @@
+EtsiTs103097Data [
+2025-06-27T13:44:54.477395899Z   protocolVersion=3,
+2025-06-27T13:44:54.477400683Z   content=[
+2025-06-27T13:44:54.477448169Z     signedData=[
+2025-06-27T13:44:54.477452292Z       hashAlgorithm=sha256,
+2025-06-27T13:44:54.477455066Z       tbsData=[
+2025-06-27T13:44:54.477457998Z         payload=[
+2025-06-27T13:44:54.477460858Z           data=[
+2025-06-27T13:44:54.477463410Z             protocolVersion=3,
+2025-06-27T13:44:54.477466243Z             content=[
+2025-06-27T13:44:54.477468485Z               unsecuredData=[data=010203040506]
+2025-06-27T13:44:54.477470849Z             ]
+2025-06-27T13:44:54.477473307Z           ]
+2025-06-27T13:44:54.477475649Z         ],
+2025-06-27T13:44:54.477478491Z         headerInfo=[
+2025-06-27T13:44:54.477485320Z           psid=[37(25)],
+2025-06-27T13:44:54.477487946Z           generationTime=[timeStamp=Fri Jun 27 13:44:52 GMT 2025 (678116695445000)],
+2025-06-27T13:44:54.477490433Z           generationLocation=[latitude=1, longitude=2, elevation=3]
+2025-06-27T13:44:54.477492813Z         ]
+2025-06-27T13:44:54.477495208Z       ],
+2025-06-27T13:44:54.477497802Z       signer=[certificate=[
+2025-06-27T13:44:54.477500226Z       EtsiTs103097Certificate [
+2025-06-27T13:44:54.477502590Z         version=3
+2025-06-27T13:44:54.477505203Z         type=explicit
+2025-06-27T13:44:54.477507595Z         issuer=[sha256AndDigest=[fceca0182008ac9d]]
+2025-06-27T13:44:54.477510094Z         toBeSigned=[
+2025-06-27T13:44:54.477512452Z           id=[none]
+2025-06-27T13:44:54.477515026Z           cracaId=[000000]
+2025-06-27T13:44:54.477517499Z           crlSeries=[0]
+2025-06-27T13:44:54.477520089Z           validityPeriod=[start=Time32 [timeStamp=Sun Dec 02 12:12:21 GMT 2018 (470837544)], duration=Duration [25 years]]
+2025-06-27T13:44:54.477522794Z           region=[SequenceOfIdentifiedRegion [[CountryOnly [752]]]]
+2025-06-27T13:44:54.477525151Z           assuranceLevel=[subjectAssurance=64 (assuranceLevel=2, confidenceLevel= 0 )]
+2025-06-27T13:44:54.477527718Z           appPermissions=[[psid=[37(25)], ssp=[bitmapSsp=[[015f0725]]]]]
+2025-06-27T13:44:54.477530252Z           certIssuePermissions=NONE
+2025-06-27T13:44:54.477533074Z           certRequestPermissions=NONE
+2025-06-27T13:44:54.477536258Z           canRequestRollover=false
+2025-06-27T13:44:54.477539346Z           encryptionKey=[supportedSymmAlg=aes128Ccm, publicKey=[ecdsaNistP256=[compressedy0=152b78495cb267853bd9197ce8efe7b199296eae90904b7ab5f8d5caf89a2eea]]]
+2025-06-27T13:44:54.477542793Z           verifyKeyIndicator=[verificationKey=[ecdsaNistP256=[compressedy1=3b7c43772d3758fd80bd403028179939875d6c6aa62ed8202173f6d2065e876a]]]
+2025-06-27T13:44:54.477550583Z         ]
+2025-06-27T13:44:54.477555460Z         signature=[ecdsaNistP256Signature=EcdsaP256[r=[xonly=fbf7802476ec597c65e1e6f53001a3e9d75a4cdc5c528d60ae0a8cc68b87a1ff], s=f0f2b953324efb855b927acee8bb3d56fcdddeebf2c9d0812ef00e413006fa55]]
+2025-06-27T13:44:54.477558767Z       ]]],
+2025-06-27T13:44:54.477562268Z       signature=[ecdsaNistP256Signature=EcdsaP256[r=[xonly=5fc8c217ad7da5b2074750e337cc2b8969ad986c2e2011b4e58420e33f66bed1], s=784f3cbdc9fd1e3e27fb93315a8cae7bf270df0cc54caa4f04d3e2752847c625]]
+2025-06-27T13:44:54.477566200Z     ]
+2025-06-27T13:44:54.477573088Z   ]
+2025-06-27T13:44:54.477576071Z ]
