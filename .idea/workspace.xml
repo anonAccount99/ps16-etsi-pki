@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50dc017e-2a2e-471e-9abc-d74f350ba032" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/png-gen.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/rm_log_tms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/run_benchmarks.sh" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/run_benchmarks.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/scripts/benchmark-results.json" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/scripts/benchmark-results.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/scripts/json_diagnosis.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/scripts/per-iter.json" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/scripts/per-iter.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/scripts/plotting.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/scripts/sign_boxplot.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/scripts/verify_boxplot.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/src/benchmark/klap20.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/src/benchmark/klap20.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/src/include/input_message.h" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/src/include/input_message.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/src/measure_signatures.c" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/src/measure_signatures.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libgroupsig_bench/src/snippets/bbs04_bench.c" beforeDir="false" afterPath="$PROJECT_DIR$/libgroupsig_bench/src/snippets/bbs04_bench.c" afterDir="false" />
-    </list>
+    <list default="true" id="50dc017e-2a2e-471e-9abc-d74f350ba032" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,6 +64,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ShowUsagesActions.previewPropertyKey": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/riccardo/Desktop/00-submit/ps16-etsi-pki",
@@ -198,7 +181,7 @@
       <workItem from="1759822201323" duration="10332000" />
       <workItem from="1759842122473" duration="889000" />
       <workItem from="1760002721814" duration="1143000" />
-      <workItem from="1763930458995" duration="1450000" />
+      <workItem from="1763930458995" duration="1791000" />
     </task>
     <servers />
   </component>
