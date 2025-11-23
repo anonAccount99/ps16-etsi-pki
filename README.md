@@ -27,7 +27,7 @@ Run from project root:
 
 ```bash
 sudo ./setup.sh
-docker compose up --build
+docker compose up build
 ```
 
 The first command prepares the local environment and permissions. The second command builds and starts all services. Benchmark results will appear at `./benchmark-results/benchmark-results.json`. To stop the stack, press `Ctrl+C`, then run:
