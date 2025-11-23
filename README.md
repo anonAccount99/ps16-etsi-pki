@@ -2,11 +2,28 @@
 
 **PS16-ETSI-PKI** is a Java-based implementation of a Public Key Infrastructure tailored for Cooperative Intelligent Transport Systems (C-ITS). The project leverages the open source *C2C-Common* project to implement standard ITS security message and certificate formats from ETSI and IEEE (e.g. **ETSI TS 103 097 v1.3.1**, **ETSI TS 102 941 v1.3.1**, and **IEEE 1609.2-2016/1609.2a-2017**). It includes a Root Certificate Authority, an Enrollment Authority, an Authorization Authority, and an ITS station, for now only used to benchmark DENM genration and verfication. This project also leverages IBM's *libgroupsig* -- a library implementing multiple group signature schemes. In particular, we modify C2C-Common to support the generation of DEN Messages signed with *PS16* signatures -- a schema implemented in *libgroupsig*.
 
-## Execution
+In `./libgroupsig_bench/` we also include benchmarking code to measure the performance of group signature generation and verification using libgroupsig.
+
+## Libgroupsig Benchmark Execution
+
+Run from project root:
+
+```bash
+cd libgroupsig_bench
+docker build -t libgroupsig-bench .
+docker run --rm -it \
+  -v "$(pwd)/scripts:/app/scripts" \
+  libgroupsig-bench \
+  /bin/bash -c "cd /app && ./run_benchmarks.sh"
+```
+
+Results will output in `./libgroupsig_bench/scripts`. Remember to use `--platform=linux/amd64` if on a non-x86_64 host.
+
+## PKI PoC Execution
 
 Prerequisites: Docker and Docker Compose v2.
 
-Run:
+Run from project root:
 
 ```bash
 sudo ./setup.sh
@@ -88,8 +105,6 @@ Most configuration is handled internally or via environment variables in the Doc
 * **Crypto Parameters:** The project follows the algorithms mandated by the standards. ECDSA with curve secp256r1 is typically used for certificates and message signatures, and AES-CCM for encryption, etc., as per ETSI specs. These are largely fixed in the code via the common library. If needed, algorithm identifiers can be changed by using the *DefaultCryptoManager* from the library with different parameters. The libgroupsig component supports different group signature schemes (e.g., BSZ, CPY06, etc.); the specific scheme can be selected in the libgroupsig configuration (defaults may be defined in libgroupsig’s build or can be switched by calling its API in code).
 * **WildFly Settings:** In Docker, WildFly is configured with an admin user (`admin:admin` by default) and deployed in standalone mode. No special ports besides 8080 (HTTP) and 9990 (management) are open. If you need to secure the services with TLS or change ports, you can adapt the Dockerfiles or WildFly configuration (standalone.xml or CLI scripts). For instance, enabling HTTPS would require adding the CA certs to the truststore and configuring an HTTPS listener.
 * **Persistent Storage:** By default, certificates and keys are kept in memory or local files inside the containers. The Root CA, EA, and AA likely generate a key pair (and self-signed or cross-signed certificates) at first startup. In the current setup, these are not persisted outside the container (so each fresh start resets the PKI). For a real deployment, you would attach volumes to persist the keystores or use an external database/HSMS.
-* **Environment Variables:** The Docker Compose file defines some env variables (like WildFly admin credentials). You can also pass in environment variables to tweak configurations; for example, if the code were designed to read a specific env var for overriding the default URLs or cryptographic settings (not explicitly implemented in this version, but could be extended).
 * **Logging:** Logging levels can be adjusted via standard Java logging config or WildFly configuration. By default, important actions (certificate issuance, requests, errors) are logged to console.
-* **.gitmodules** – Indicates this project was structured with Git submodules for each component in its original repository form. Each submodule corresponds to one of the directories above (root-ca, ea-ca, etc.), which were likely individual repositories (e.g., on a GitLab instance) combined here.
 
 The codebase is logically separated by component, which makes it easier to understand each part of the system independently (e.g., one can focus on `aa-ca` to see how the AA works, etc.).

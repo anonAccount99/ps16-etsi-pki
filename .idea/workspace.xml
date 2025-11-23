@@ -64,6 +64,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ShowUsagesActions.previewPropertyKey": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/riccardo/Desktop/00-submit/ps16-etsi-pki",
@@ -85,6 +86,9 @@
       <recent name="$PROJECT_DIR$/aa-ca/src/main/java/eu/fbk/aleph/its/aaca/services/groupsig/utils" />
       <recent name="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/etsi103097" />
       <recent name="$PROJECT_DIR$/its-station" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/libgroupsig_bench/src/benchmark" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.its-station/Dockerfile">
@@ -145,8 +149,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.29188.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.29188.11" />
       </set>
     </attachedChunks>
   </component>
@@ -178,6 +182,7 @@
       <workItem from="1759822201323" duration="10332000" />
       <workItem from="1759842122473" duration="889000" />
       <workItem from="1760002721814" duration="1143000" />
+      <workItem from="1763930458995" duration="2097000" />
     </task>
     <servers />
   </component>
