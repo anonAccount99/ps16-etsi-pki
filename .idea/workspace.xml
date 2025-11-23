@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50dc017e-2a2e-471e-9abc-d74f350ba032" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchmark-results/benchmark_boxplots.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchmark-results/benchmark_comparison.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchmark-results/out.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/c2c-common-groupsig" beforeDir="false" afterPath="$PROJECT_DIR$/c2c-common-groupsig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c2c-common-groupsig/src/main/java/org/certificateservices/custom/c2x/common/crypto/DefaultCryptoManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/c2c-common-groupsig/src/main/java/org/certificateservices/custom/c2x/common/crypto/DefaultCryptoManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c2c-common-groupsig/src/main/java/org/certificateservices/custom/c2x/ieee1609dot2/crypto/Ieee1609Dot2CryptoManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/c2c-common-groupsig/src/main/java/org/certificateservices/custom/c2x/ieee1609dot2/crypto/Ieee1609Dot2CryptoManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/its-station" beforeDir="false" afterPath="$PROJECT_DIR$/its-station" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/etsi103097/DenmGeneratorBenchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/etsi103097/DenmGeneratorBenchmark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/etsi103097/DenmReceiverBenchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/etsi103097/DenmReceiverBenchmark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/groupsig/DenmGeneratorBenchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/groupsig/DenmGeneratorBenchmark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/groupsig/DenmReceiverBenchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/groupsig/DenmReceiverBenchmark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/domain/denm/transmission/etsi103097/DenmTransmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/domain/denm/transmission/etsi103097/DenmTransmitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/domain/denm/transmission/groupsig/DenmTransmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/domain/denm/transmission/groupsig/DenmTransmitter.java" afterDir="false" />
-    </list>
+    <list default="true" id="50dc017e-2a2e-471e-9abc-d74f350ba032" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,7 +40,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/c2c-common-groupsig" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -72,31 +56,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.alt-pki: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.its-station/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;ShowUsagesActions.previewPropertyKey&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/lallo/uni/fbk/pki-groupsig/docker-compose.yml&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.44778615&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.Unnamed.executor": "Run",
+    "Docker.alt-pki: Compose Deployment.executor": "Run",
+    "Docker.its-station/Dockerfile.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "ShowUsagesActions.previewPropertyKey": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/riccardo/Desktop/00-submit/ps16-etsi-pki",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.44778615",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/aa-ca/src/main/java/eu/fbk/aleph/its/aaca/services/groupsig/utils" />
       <recent name="$PROJECT_DIR$/its-station/src/main/java/eu/fbk/aleph/its/benchmark/etsi103097" />
       <recent name="$PROJECT_DIR$/its-station" />
