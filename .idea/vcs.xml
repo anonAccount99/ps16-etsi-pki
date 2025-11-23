@@ -6,6 +6,7 @@
     <mapping directory="$PROJECT_DIR$/c2c-common-groupsig" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/ea-ca" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/its-station" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/libgroupsig_bench" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/root-ca" vcs="Git" />
   </component>
 </project>
